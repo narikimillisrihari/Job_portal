@@ -1,0 +1,18 @@
+<!-- templates/registration/home.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+    <h1>Welcome, {{ user.username }}</h1>
+    <p>Email: {{ user.email }}</p>
+    <p>Profile:</p>
+    <ul>
+        <li>Employee: {% if profile.is_employee %}Yes{% else %}No{% endif %}</li>
+        <li>Job Seeker: {% if profile.is_job_seeker %}Yes{% else %}No{% endif %}</li>
+    </ul>
+</body>
+</html>

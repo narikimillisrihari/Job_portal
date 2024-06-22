@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobseeker Dashboard</title>
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <style>
+        /* Custom CSS for positioning logout button */
+        .logout-btn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000; /* Ensure it's above other content */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        {% csrf_token %}
+        <div class="text-center">
+            <h1>Welcome, {{ user.username }}</h1>
+            <p class="lead">This is the Jobseeker Dashboard</p>
+            <hr class="my-4">
+        </div>
+        <div class="d-flex justify-content-center mt-4">
+            <a href="{% url 'job:jobseeker_list' %}" class="btn btn-primary mx-2">All Jobs</a>
+            <a href="{% url 'user:home' %}" class="btn btn-info mx-2">Jobseeker Details</a>
+        </div>
+        <!-- <div class="mt-4 text-center">
+            <a href="{% url 'user:jobdashboard' %}" class="btn btn-info mx-2">Back to Job Dashboard</a>
+        </div> -->
+    </div>
+
+    <!-- Logout button in the corner -->
+    <a href="{% url 'user:logout' %}" class="btn btn-sm btn-danger logout-btn">Logout</a>
+
+    <!-- Add Bootstrap JS and Popper.js scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
