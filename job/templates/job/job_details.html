@@ -51,7 +51,11 @@
             <li><h2>Job Posted Date:</h2><span>{{data.job_posted_date}}</span></li>
             <li><h2>Apply URL:</h2><span><a href="{{data.apply_url}}" target="_blank">{{data.apply_url}}</a></span></li>
         </ul>
-        <a href="{% url 'job:jobseeker_list' %}" class="btn btn-sm btn-secondary btn-back">Back to Job List</a>
+
+        <div class="mt-4 text-center">
+            <a href="{% url 'application:apply' data.id %}" class="btn btn-sm btn-secondary btn-back">Apply</a>
+            <a href="{% url 'job:jobseeker_list' %}" class="btn btn-sm btn-secondary btn-back">Back to Job List</a>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>

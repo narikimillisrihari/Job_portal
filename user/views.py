@@ -2,6 +2,7 @@
 
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import login, authenticate,logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from user.models import Profile
 from .forms import UserForm, ProfileForm
@@ -40,29 +41,28 @@ def user_login(request):
         print(user.password)
         if user is not None:
                 login(request, user)
-                if user.check_password(password):
-                    if profile.is_employee==True:
-                        return redirect('user:empdashboard')
-                    else:
-                        return redirect('user:jobdashboard')
+                next_page = request.GET.get('next')
+                if profile.is_employee==True:
+                    return redirect('user:empdashboard')
                 else:
-                    return render(request, 'user/login.html', {'error': 'Invalid username or password.'})
+                    return redirect('user:jobdashboard')
 
         else:
             return render(request, 'user/login.html', {'error': 'Invalid username or password.'})
     else:
         return render(request, 'user/login.html', {})
-
+@login_required
 def empdashboard(request):
     user = request.user
     return render(request,'user/employee_dashboard.html',{'user':user})
 
+@login_required
 def jobdashboard(request):
     user = request.user
     return render(request,'user/jobseeker_dashboard.html',{'user':user})
 
 
-
+@login_required
 def home(request):
     user = request.user
     try:
@@ -76,17 +76,19 @@ def home(request):
     }
     return render(request, 'user/home.html', context)
 
+@login_required
 def list(request):
     obj = Profile.objects.all()
     return render(request, 'user/sample.html', {'obj': obj})
 
-
+@login_required
 def delete_user(request, id):
     item = get_object_or_404(Profile, id=id)
     item.user.delete()  # This will delete the user and the associated profile
     print("item is deleted")
     return redirect('user:list')
 
+@login_required
 def logout_view(request):
     logout(request)
     return redirect('user:login')

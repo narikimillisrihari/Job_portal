@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('job/', include(('job.urls', 'job'), namespace='job')),  # Add namespace 'job'
     path('user/', include(('user.urls', 'user'), namespace='user')), 
+    path('application/',include(('application.urls','application'),namespace='application'))
 #     path('job/', include('job.urls')),  # Add namespace 'job'
 #     path('user/', include('user.urls')),  # Add namespace 'user'
 ]

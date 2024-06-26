@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'job',
     'user',
+    'application',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -130,3 +131,4 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+LOGIN_URL = '/user/login/'  # Replace with your actual login URL
